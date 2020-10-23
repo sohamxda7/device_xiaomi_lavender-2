@@ -7,9 +7,6 @@
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/xiaomi/lavender/lavender-vendor.mk)
 
-# GoogleCamera
-$(call inherit-product-if-exists, packages/apps/GoogleCamera/gcam.mk)
-
 -include $(LOCAL_PATH)/vendor_prop.mk
 
 PRODUCT_CHARACTERISTICS := nosdcard
@@ -149,7 +146,8 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5 \
     android.hardware.camera.provider@2.4-service \
     android.hardware.camera.common@1.0 \
-    vendor.qti.hardware.camera.device@1.0
+    vendor.qti.hardware.camera.device@1.0 \
+    Snap
 
 # Camera  Shims
 PRODUCT_PACKAGES += \
@@ -433,11 +431,6 @@ PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     rild
 
-# AOT Preload
-PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    NexusLauncherRelease
-
 # Seccomp policy
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/seccomp/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy \
@@ -483,10 +476,6 @@ PRODUCT_PACKAGES += \
     libgui_vendor \
     vndk_package \
     vndk-ext
-
-# Wallpapers
-PRODUCT_PACKAGES += \
-    PixelLiveWallpaperPrebuilt
 
 # Wifi
 PRODUCT_PACKAGES += \
